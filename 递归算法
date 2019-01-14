@@ -1,0 +1,29 @@
+#递归求n阶
+def fact(n):
+	if(n==1):
+		return 1
+	else:
+		return n*fact(n-1)
+print(fact(5))
+
+#尾递归求n阶
+def fact(num):
+	return factnum(num,product=1)
+def factnum(num,product):
+	if(num==1):
+		return product
+	else:
+		return factnum(num-1,product*num)
+print(fact(5))
+
+#请编写move(n, a, b, c)函数，它接收参数n，表示3个柱子A、B、C中第1个柱子A的盘子数量，然后打印出把所有盘子从A借助B移动到C的方法，
+#首先需要知道玩法，在一根柱子上从下往上按照大小顺序摞着，圆盘从下面开始按大小顺序重新摆放在另一根柱子上。
+#并且规定，在小圆盘上不能放大圆盘，在三根柱子之间一次只能移动一个圆盘。
+def move(n, a, b, c):
+	if n == 1:
+		print(a, '-->', c)
+	else:
+		move(n-1,a,c,b)#把n-1个盘子移动到B柱子上
+		move(1,a,b,c)#把底座移动到C柱子上
+		move(n-1,b,a,c)#把n-1个盘子从B柱子移动到C柱子上
+move(3, 'A', 'B', 'C')
